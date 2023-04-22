@@ -1,7 +1,8 @@
 FROM python:3
 
-RUN addgroup --system <group>
-RUN adduser --system <user> --ingroup <group>
+RUN addgroup --system <group> && \
+    adduser --system <user> --ingroup <group>
+    
 USER <user>:<group>
 
 
