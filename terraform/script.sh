@@ -13,7 +13,7 @@ sudo usermod -a -G microk8s $USER
 sudo mkdir -p $HOME/.kube
 sudo chown -R $USER:$USER $HOME/.kube
 sudo microk8s.kubectl config view --raw > $HOME/.kube/config
-newgrp microk8s
+#newgrp microk8s
 sudo snap alias microk8s.kubectl kubectl
 sudo microk8s enable ingress prometheus dashboard hostpath-storage metrics-server observability
 sudo microk8s kubectl patch svc kube-prom-stack-grafana -n observability --type='json' -p '[{"op":"replace","path":"/spec/type","value":"NodePort"}]'
