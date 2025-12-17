@@ -24,4 +24,7 @@ jobs:
       run: docker login -u ${{ secrets.dockerhub_user }} -p ${{ secrets.dockerhub_pass }}
       
     - name: docker push
-      run: docker push lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }}
+      run: |
+        docker push lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }}
+        docker tag lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }} lidorlg/lidor-python-sce:latest
+        docker push lidorlg/lidor-python-sce:latest
