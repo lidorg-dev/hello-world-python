@@ -19,5 +19,9 @@ jobs:
       
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }}
+
+    - name: docker login
+      run: docker login -u ${{ secrets.dockerhub_user }} -p ${{ secrets.dockerhub_pass }}
+      
     - name: docker push
       run: docker push lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }}
