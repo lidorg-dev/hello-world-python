@@ -42,8 +42,6 @@ jobs:
           pass: ${{ secrets.azure_pass }} # optional
           # The public host key of the remote server to prevent MITM attacks. (Use GitHub secrets!)
           known_hosts: ${{ secrets.pub_key }}
-          # Connection timeout. Use 's' for seconds, 'm' for minutes. Ex: '60s' or '1m'.
-          connect_timeout: # optional, default is 30s
           # Multiline block of commands to run before the SCP transfer.
           first_ssh: echo "hello" # optional
 
