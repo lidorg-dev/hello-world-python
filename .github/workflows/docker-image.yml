@@ -47,4 +47,4 @@ jobs:
           # Multiline block of commands to run before the SCP transfer.
           #first_ssh: sudo docker stop lidor-python && sudo docker rm lidor-python
 
-          last_ssh: sudo docker run -d --name lidor-python -p 80:8080 lidor-python-sce:$(date +%F)-${{ github.run_number }}
+          last_ssh: sudo docker run -d --name lidor-python -p 80:8080 lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }}
