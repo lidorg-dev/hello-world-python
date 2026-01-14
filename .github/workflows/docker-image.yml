@@ -28,3 +28,23 @@ jobs:
         docker push lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }}
         docker tag lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }} lidorlg/lidor-python-sce:latest
         docker push lidorlg/lidor-python-sce:latest
+  deploy-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH to Azure Server
+        uses: kangketikonlen/ssh-pipeline@v0.0.3
+        with:
+          # Remote server hostname or IP address.
+          host: 172.201.126.44
+          # SSH username for the remote server.
+          user: github-admin
+          # SSH password to authenticate. (Use GitHub secrets!)
+          pass: ${{ secrets.azure_pass }} # optional
+          # The public host key of the remote server to prevent MITM attacks. (Use GitHub secrets!)
+          known_hosts: ${{ secrets.pub_key }}
+          # Connection timeout. Use 's' for seconds, 'm' for minutes. Ex: '60s' or '1m'.
+          connect_timeout: # optional, default is 30s
+          # Multiline block of commands to run before the SCP transfer.
+          first_ssh: echo "hello" # optional
+
+          last_ssh: ls / # optional
