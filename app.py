@@ -14,7 +14,7 @@ def elapsed():
 
 @app.route('/')
 def root():
-    return "Hello World -new version 3.00 BY Lidor -DEVOPS (Python)! (up %s)\n" % elapsed()
+    return "Hello World -new version 4.00-SCE BY Lidor -DEVOPS-SCE  (Python)! (up %s)\n" % elapsed()
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)
