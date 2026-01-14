@@ -29,6 +29,8 @@ jobs:
         docker tag lidorlg/lidor-python-sce:$(date +%F)-${{ github.run_number }} lidorlg/lidor-python-sce:latest
         docker push lidorlg/lidor-python-sce:latest
   deploy-docker:
+    needs: 
+      - build-docker
     runs-on: ubuntu-latest
     steps:
       - name: SSH to Azure Server
@@ -43,6 +45,6 @@ jobs:
           # The public host key of the remote server to prevent MITM attacks. (Use GitHub secrets!)
           known_hosts: ${{ secrets.PUB_KEY }}
           # Multiline block of commands to run before the SCP transfer.
-          first_ssh: echo "hello" # optional
+          first_ssh: sudo docker stop lidor-python && sudo docker rm lidor-python
 
-          last_ssh: ls / # optional
+          last_ssh: sudo docker run -d --name lidor-python -p 80:8080 lidor-python-sce:$(date +%F)-${{ github.run_number }}
